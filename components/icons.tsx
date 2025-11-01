@@ -1,5 +1,47 @@
-
 import React from 'react';
+
+export const UndoIcon: React.FC<{ className?: string }> = ({ className }) => (
+    <svg 
+        xmlns="http://www.w3.org/2000/svg" 
+        fill="none" 
+        viewBox="0 0 24 24" 
+        strokeWidth={1.5} 
+        stroke="currentColor" 
+        className={className}
+    >
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9 15L3 9m0 0l6-6M3 9h12a6 6 0 010 12h-3" />
+    </svg>
+);
+
+export const LockClosedIcon: React.FC<{ className?: string }> = ({ className }) => (
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        className={className}
+    >
+        <path
+            fillRule="evenodd"
+            d="M12 1.5a5.25 5.25 0 00-5.25 5.25v3a3 3 0 00-3 3v6.75a3 3 0 003 3h10.5a3 3 0 003-3v-6.75a3 3 0 00-3-3v-3c0-2.9-2.35-5.25-5.25-5.25zm3.75 8.25v-3a3.75 3.75 0 10-7.5 0v3h7.5z"
+            clipRule="evenodd"
+        />
+    </svg>
+);
+
+export const CheckCircleIcon: React.FC<{ className?: string }> = ({ className }) => (
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        className={className}
+    >
+        <path
+            fillRule="evenodd"
+            d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm13.36-1.814a.75.75 0 10-1.06-1.06l-3.25 3.25-1.5-1.5a.75.75 0 00-1.06 1.06l2 2a.75.75 0 001.06 0l3.75-3.75z"
+            clipRule="evenodd"
+        />
+    </svg>
+);
 
 export const CoinIcon: React.FC<{ className?: string }> = ({ className }) => (
   <svg
@@ -10,7 +52,7 @@ export const CoinIcon: React.FC<{ className?: string }> = ({ className }) => (
   >
     <path
       fillRule="evenodd"
-      d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zM12.75 6a.75.75 0 00-1.5 0v.093c-1.72.24-3.064 1.68-3.064 3.407 0 1.396.812 2.584 1.95 3.125-.138.11-.28.213-.424.316l-.28.198-1.588-.893a.75.75 0 00-.832 1.31l1.722.969a.75.75 0 00.916-.046l.203-.144a4.48 4.48 0 002.422-2.164.75.75 0 00.228-1.075 1.95 1.95 0 01-1.9-1.886c0-.667.33-1.248.84-1.6.353-.245.753-.418 1.16-.511V6z"
+      d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zM12.75 6a.75.75 0 00-1.5 0v.093c-1.72.24-3.064 1.68-3.064 3.407 0 1.396.812 2.584 1.95 3.125-.138.11-.28.213-.424.316l-.28.198-1.588-.893a.75.75 0 00-.832 1.31l1.722.969a.75.75 0 00.916-.046l.203-.144a4.48 4.48 0 002.242-2.164.75.75 0 00.228-1.075 1.95 1.95 0 01-1.9-1.886c0-.667.33-1.248.84-1.6.353-.245.753-.418 1.16-.511V6z"
       clipRule="evenodd"
     />
     <path d="M12 1.5a10.5 10.5 0 100 21 10.5 10.5 0 000-21zM12 21a9 9 0 100-18 9 9 0 000 18z" />
@@ -58,5 +100,17 @@ export const ClockIcon: React.FC<{ className?: string }> = ({ className }) => (
       className={className}
     >
       <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+    </svg>
+);
+
+export const SkipIcon: React.FC<{ className?: string }> = ({ className }) => (
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        className={className}
+    >
+        <path fillRule="evenodd" d="M2.25 5.25a.75.75 0 01.75-.75h.01a.75.75 0 01.75.75v13.5a.75.75 0 01-1.5 0V5.25zM6 5.25a.75.75 0 01.75-.75h10.5a.75.75 0 010 1.5H6.75a.75.75 0 01-.75-.75zM15.75 5.25a.75.75 0 01.75-.75h.01a.75.75 0 01.75.75v13.5a.75.75 0 01-1.5 0V5.25z" clipRule="evenodd" />
+        <path d="M9.47 6.47a.75.75 0 011.06 0l4.5 4.5a.75.75 0 010 1.06l-4.5 4.5a.75.75 0 11-1.06-1.06L13.38 12 9.47 8.03a.75.75 0 010-1.06z" />
     </svg>
 );

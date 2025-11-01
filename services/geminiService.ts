@@ -1,46 +1,45 @@
+import { GoogleGenAI } from "@google/genai";
 
-import { GoogleGenAI, GenerateContentResponse } from "@google/genai";
+// Per coding guidelines, the API key is assumed to be available in process.env.API_KEY.
+const ai = new GoogleGenAI({ apiKey: process.env.API_KEY! });
 
-const API_KEY = process.env.API_KEY;
-
-if (!API_KEY) {
-  // In a real app, you might show a more user-friendly error.
-  // For this environment, we assume the API key is always present.
-  console.warn("API_KEY not found in environment variables. Gemini features will be disabled.");
+interface HintResult {
+  hint: string;
+  word: string;
 }
 
-const ai = new GoogleGenAI({ apiKey: API_KEY! });
-
-export const getHintFromGemini = async (letters: string, foundWords: string[], allWords: string[]): Promise<string> => {
-  if (!API_KEY) {
-    return "Gemini is not available. Check your API key.";
-  }
-
+export const getHintFromGemini = async (letters: string, foundWords: string[], allWords: string[]): Promise<HintResult> => {
   const unFoundWords = allWords.filter(word => !foundWords.includes(word));
   if (unFoundWords.length === 0) {
-    return "You have found all the words!";
+    // This case is handled in the UI, but as a fallback, we throw an error.
+    throw new Error("All words have been found.");
   }
 
   const targetWord = unFoundWords[Math.floor(Math.random() * unFoundWords.length)];
 
+  // Improved prompt for better clarity and to follow a more direct instruction style.
   const prompt = `
-    I am playing a word game.
-    The available letters are: ${letters.split('').join(', ')}.
-    I need a hint for a ${targetWord.length}-letter word.
-    Please give me a short, clever, one-sentence hint for the word "${targetWord}".
-    Do not reveal the word itself in the hint. The hint should be a definition or a clue.
-    Example for "WATER": "It's a clear liquid essential for life."
-    Hint for "${targetWord}":
+    You are an AI assistant for a word game. Your task is to provide a short, clever, one-sentence hint for a given word.
+    The hint must not reveal the word itself. It should be a definition or a clue.
+
+    Game context:
+    - Available letters: ${letters.split('').join(', ')}
+    - The word to provide a hint for is "${targetWord}". It has ${targetWord.length} letters.
+    
+    Example hint for the word "WATER": "It's a clear liquid essential for life."
+
+    Provide your hint for "${targetWord}":
   `;
 
   try {
-    const response: GenerateContentResponse = await ai.models.generateContent({
+    const response = await ai.models.generateContent({
       model: 'gemini-2.5-flash',
       contents: prompt,
     });
-    return response.text.trim();
+    // The Gemini API response for a simple text prompt is accessed via the .text property.
+    return { hint: response.text.trim(), word: targetWord };
   } catch (error) {
     console.error("Error fetching hint from Gemini:", error);
-    return "Could not get a hint at this time. Please try again later.";
+    throw new Error("Could not get a hint at this time. Please try again later.");
   }
 };
